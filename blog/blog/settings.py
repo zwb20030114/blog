@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #子应用的注册
+    'users.apps.UsersConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -54,7 +57,7 @@ ROOT_URLCONF = 'blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],#设置模板路径
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -192,3 +195,7 @@ LOGGING = {
         },
     }
 }
+
+#替换 系统的User 来使用我们自己定义的User
+#配置信息为’子应用名。模型类型'
+AUTH_USER_MODEL = 'users.User'
