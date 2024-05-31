@@ -106,7 +106,7 @@ var vm = new Vue({
             this.check_mobile();
             this.check_image_code();
 
-            if (this.mobile_error == true || this.image_code_error == true) {
+            if (this.mobile_error === true || this.image_code_error === true) {
                 this.sending_flag = false;
                 return;
             }
@@ -118,12 +118,12 @@ var vm = new Vue({
             })
                 .then(response => {
                     // 表示后端发送短信成功
-                    if (response.data.code == '0') {
+                    if (response.data.code === '0') {
                         // 倒计时60秒，60秒后允许用户再次点击发送短信验证码的按钮
                         var num = 60;
                         // 设置一个计时器
                         var t = setInterval(() => {
-                            if (num == 1) {
+                            if (num === 1) {
                                 // 如果计时器到最后, 清除计时器对象
                                 clearInterval(t);
                                 // 将点击获取验证码的按钮展示的文本回复成原始文本
@@ -137,7 +137,7 @@ var vm = new Vue({
                             }
                         }, 1000, 60)
                     } else {
-                        if (response.data.code == '4001') {
+                        if (response.data.code === '4001') {
                             //图片验证码错误
                             this.image_code_error = true;
                         }
